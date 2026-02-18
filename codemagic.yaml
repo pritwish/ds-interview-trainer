@@ -18,7 +18,7 @@ workflows:
             -project DSInterviewer.xcodeproj \
             -scheme DSInterviewer \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
             -derivedDataPath build \
             CODE_SIGN_IDENTITY="" \
