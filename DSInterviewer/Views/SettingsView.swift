@@ -34,7 +34,7 @@ struct SettingsView: View {
                         }
                 } else {
                     Text(settingsManager.hasAPIKey ? "sk-ant-•••••••••" : "Not configured")
-                        .foregroundStyle(settingsManager.hasAPIKey ? .primary : .red)
+                        .foregroundStyle(settingsManager.hasAPIKey ? Color.primary : Color.red)
                 }
 
                 Spacer()
