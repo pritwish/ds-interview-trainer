@@ -14,6 +14,7 @@ workflows:
 
       - name: Build for simulator
         script: |
+          set -o pipefail
           xcodebuild \
             -project DSInterviewer.xcodeproj \
             -scheme DSInterviewer \
@@ -23,7 +24,10 @@ workflows:
             -derivedDataPath build \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            build
+            build 2>&1 | tee /tmp/build.log | grep -E "error:|warning: |Build succeeded|BUILD FAILED" || true
+          echo "--- ERRORS ---"
+          grep "error:" /tmp/build.log || echo "No error lines found"
+          grep -c "error:" /tmp/build.log | xargs -I{} test {} -eq 0 || exit 1
 
     artifacts:
       - build/Build/Products/Debug-iphonesimulator/DSInterviewer.app
