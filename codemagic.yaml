@@ -1,0 +1,29 @@
+workflows:
+  ios-build:
+    name: DS Interviewer - iOS Build
+    max_build_duration: 30
+    environment:
+      xcode: 15.4
+
+    scripts:
+      - name: Install xcodegen
+        script: brew install xcodegen
+
+      - name: Generate Xcode project
+        script: xcodegen generate
+
+      - name: Build for simulator
+        script: |
+          xcodebuild \
+            -project DSInterviewer.xcodeproj \
+            -scheme DSInterviewer \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -configuration Debug \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+    artifacts:
+      - build/Build/Products/Debug-iphonesimulator/DSInterviewer.app
