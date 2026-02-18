@@ -42,7 +42,7 @@ final class InterviewViewModel: ObservableObject {
         self.settingsManager = settingsManager
 
         speechRecognition.silenceThreshold = settingsManager.silenceThresholdSeconds
-        speechSynthesis.rate = settingsManager.speechRate
+        speechSynthesis.rate = Float(settingsManager.speechRate)
 
         setupSilenceDetection()
     }

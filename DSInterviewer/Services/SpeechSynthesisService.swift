@@ -9,7 +9,7 @@ final class SpeechSynthesisService: NSObject, ObservableObject, AVSpeechSynthesi
     private let synthesizer = AVSpeechSynthesizer()
     private var completionHandler: (() -> Void)?
     private var totalCharacters: Int = 0
-    var rate: Double = 0.92
+    var rate: Float = 0.92
 
     override init() {
         super.init()
